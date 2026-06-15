@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background-color: #f0f2f5; }
+    h2 { color: #1a73e8; text-align: center; }
+    input { display: block; margin: 15px auto; padding: 12px; width: 90%; border: 1px solid #ccc; border-radius: 5px; }
+    button { display: block; margin: 15px auto; padding: 12px 25px; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; width: 90%; }
+    #orderList { margin-top: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+  <h2>Swag Speed</h2>
+  
+  <input type="text" id="customerName" placeholder="Mee peru">
+  <input type="text" id="productName" placeholder="Product name">
+  <button onclick="saveOrder()">Order Now</button>
+  
+  <button onclick="loadOrders()" style="background-color: #28a745;">View Orders</button>
+  <div id="orderList"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyChemCLlLrRyUCMg8TD4--sVEuXrNbqamA",
+      authDomain: "swag-speed.firebaseapp.com",
+      projectId: "swag-speed",
+      storageBucket: "swag-speed.firebasestorage.app",
+      messagingSenderId: "643824506890",
+      appId: "1:643824506890:web:8ecbaa14102cfcf34d27f3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.saveOrder = async function() {
+      const name = document.getElementById("customerName").value;
+      const product = document.getElementById("productName").value;
+      if(name === "" || product === "") { alert("Please anni details fill cheyyandi!"); return; }
+      try {
+        await addDoc(collection(db, "orders"), {
+          customerName: name,
+          productName: product,
+          orderDate: new Date().toString()
+        });
+        alert("Swag Speed order success: " + name);
+      } catch (e) { alert("Error: " + e.message); }
+    }
+
+    window.loadOrders = async function() {
+      const listDiv = document.getElementById("orderList");
+      listDiv.innerHTML = "Loading...";
+      try {
+        const querySnapshot = await getDocs(collection(db, "orders"));
+        let html = "<h3>Orders List:</h3><ul>";
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          html += `<li>${data.customerName} - ${data.productName}</li>`;
+        });
+        html += "</ul>";
+        listDiv.innerHTML = html;
+      } catch (e) { listDiv.innerHTML = "Error loading orders."; }
+    }
+  </script>
+
+</body>
+</html>
