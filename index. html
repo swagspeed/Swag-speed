@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Swag-speed Business</title>
-    <style>
-        body { font-family: Arial; padding: 20px; }
-        input { display: block; margin: 10px 0; padding: 8px; width: 80%; }
-        button { padding: 10px 20px; background: green; color: white; border: none; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <h1>Swag-speed Management</h1>
-    <input type="text" id="custName" placeholder="Customer Name">
-    <input type="text" id="item" placeholder="Product Name">
-    <button onclick="saveOrder()">Save Order</button>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwagSpeed</title>
 
-    <script>
-        function saveOrder() {
-            let name = document.getElementById('custName').value;
-            let item = document.getElementById('item').value;
-            if(name && item) {
-                alert("Swag-speed order saved for: " + name);
-            } else {
-                alert("Please fill all details!");
-            }
-        }
-    </script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>🚀 SwagSpeed</h1>
+<p>India's Smart AI Marketplace</p>
+</header>
+
+<main>
+
+<button onclick="customer()">Customer</button>
+
+<button onclick="seller()">Seller</button>
+
+<button onclick="delivery()">Delivery Partner</button>
+
+<button onclick="admin()">Admin</button>
+
+</main>
+
+<script src="app.js"></script>
+
 </body>
 </html>
