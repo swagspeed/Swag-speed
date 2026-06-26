@@ -1,15 +1,15 @@
 function customer() {
-    alert("Welcome Customer!");
+    alert("🛒 Welcome Customer!\nSwagSpeed Customer Portal Coming Soon.");
 }
 
 function seller() {
-    alert("Welcome Seller!");
+    alert("🏪 Welcome Seller!\nSeller Dashboard Coming Soon.");
 }
 
 function delivery() {
-    alert("Welcome Delivery Partner!");
+    alert("🚚 Welcome Delivery Partner!\nDelivery Portal Coming Soon.");
 }
 
 function admin() {
-    alert("Welcome Admin!");
+    alert("⚙️ Welcome Admin!\nAdmin Panel Coming Soon.");
 }
